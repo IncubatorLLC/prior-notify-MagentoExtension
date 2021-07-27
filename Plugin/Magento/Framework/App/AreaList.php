@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace PriorNotify\UpwardConnector\Plugin\Magento\Framework\App;
+namespace IncubatorLLC\PriorNotify\Plugin\Magento\Framework\App;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;

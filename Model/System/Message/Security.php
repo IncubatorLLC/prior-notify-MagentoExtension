@@ -4,7 +4,7 @@
  * See COPYING.txt for license details.
  */
 
-namespace PriorNotify\UpwardConnector\Model\System\Message;
+namespace IncubatorLLC\PriorNotify\Model\System\Message;
 
 class Security implements \Magento\Framework\Notification\MessageInterface
 {

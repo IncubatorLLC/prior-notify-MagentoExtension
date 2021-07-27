@@ -1,16 +1,15 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <referenceBlock name="page.title">
-        <action method="setPageTitle">
-            <argument name="title" xsi:type="string">PriorNotify plugin</argument>
-        </action>
     </referenceBlock>
     <head>
-        <css src="PriorNotify_UpwardConnector::css/priorNotify.css"/>
+        <css src="IncubatorLLC_PriorNotify::css/priorNotify.css"/>
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Magento\Backend\Block\Template" template="PriorNotify_UpwardConnector::upwardconnector.phtml"/>
+            <block class="IncubatorLLC\PriorNotify\Block\Template" template="IncubatorLLC_PriorNotify::upwardconnector.phtml" >
+                <argument name="store_name" xsi:type="string">ExampleCorp</argument>.
+            </block>
         </referenceContainer>
     </body>
 </page>

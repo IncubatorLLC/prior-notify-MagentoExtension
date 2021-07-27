@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace PriorNotify\UpwardConnector\Plugin\Magento\Framework\App;
+namespace IncubatorLLC\PriorNotify\Plugin\Magento\Framework\App;
 
 /**
  * Empty class plugin to work around MC-39132. Prevents AppendNoStoreCacheHeader

@@ -10,7 +10,7 @@
     <type name="Magento\Framework\Notification\MessageList">
         <arguments>
             <argument name="messages" xsi:type="array">
-                <item name="security" xsi:type="string">PriorNotify\UpwardConnector\Model\System\Message\Security</item>
+                <item name="security" xsi:type="string">IncubatorLLC\PriorNotify\Model\System\Message\Security</item>
             </argument>
         </arguments>
     </type>

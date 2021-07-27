@@ -1,63 +1,64 @@
 <script>
-    function removeItem(sKey, sPath, sDomain) {
-        document.cookie = encodeURIComponent(sKey) + 
-            "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + 
-            (sDomain ? "; domain=" + sDomain : "") + 
-            (sPath ? "; path=" + sPath : "");
-    }
-
-    var query = window.location.search.split('&');
-    if (query.length > 1) {
-        window.location = window.location.origin + window.location.pathname + query[0];
-    }
-
-    window.addEventListener('focus', focus);
-
-    function focus(event) {
-        var cookies = document.cookie.split('; ');
-        var isReload = cookies.some(cookie => {
-            var name = cookie.split('=')[0];
-            var value = cookie.split('=')[1];
-            return name === 'reload' && value === '1';
-        })
-
-        if (isReload) {
-            removeItem('reload');
-            window.location.reload();
+    function disconnect() {
+        const url = '<?php echo $this->getBaseUrl(); ?>/rest/V1/delete-prior-notify-token';
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.onreadystatechange = function() {
+            if (this.readyState != 4) return;
+            if (this.responseText === "\"success\"") {
+                window.location.reload()
+            }
         }
+        xhr.send();
     }
 
-
-    var searchUrl = window.location.search;
-    var start = searchUrl.indexOf('token=');
-    var token = '';
-    if(start >= 0){
-        var last = searchUrl.indexOf('&', start) > 0 ? searchUrl.indexOf('&',start) : undefined;
-        token = searchUrl.substring(start, last ).replace('token=', '');
-    }
-    if (token) {
-    document.cookie = "token=" + token;
-    window.location.replace(window.location.href.replace(`&token=${token}`, ''));
+    function connect() {
+        localStorage.setItem('connect', 'true');
+        const url = '<?php echo $this->getFrontUrl(); ?>/connect-magento?plugin_callback=<?php echo urlencode($this->getBaseUrl()); ?>';
+        window.open(url, '_blank').focus();
     }
 </script>
+<?php if (!$this->getStatus()) { ?>
+    <script>
+        window.addEventListener('focus', focus);
+
+        function focus(event) {
+            const connected = localStorage.getItem('connect');
+            if (connected === "true") {
+                localStorage.removeItem('connect');
+                const url = '<?php echo $this->getBaseUrl(); ?>/rest/V1/check-prior-notify-token';
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", url, true);
+                xhr.onreadystatechange = function() {
+                    if (this.readyState != 4) return;
+                    if (this.responseText === "\"success\"") {
+                        window.location.reload()
+                    }
+                }
+                xhr.send();
+            }
+        }
+    </script>
+<?php } ?>
+
 <div class="priorNotify__container">
     <div class="priorNotify__header">
         <div class="priorNotify__logo-wrapper">
-            <img class="priorNotify__logo" src="<?php echo $this->getViewFileUrl('PriorNotify_HelloWorld::images/logo.png'); ?>" alt="PriorNotify" />
+            <img class="priorNotify__logo" src="<?php echo $this->getViewFileUrl('IncubatorLLC_PriorNotify::images/logo.png'); ?>" alt="PriorNotify" />
             <h1>PriorNotify plugin</h1>
         </div>
         <div>
-        {% if not isUserLogged %}
+        <?php if ($this->getStatus()) { ?>
             <div class="priorNotify__header-auth">
-                <a class="btn-blue" target="_blank" href="{{api.baseUrl}}/register?redirect_uri={{site_url}}">Sign up</a>
-                <a class="btn-blue" target="_blank" href="{{api.baseUrl}}/connect-woocommerce?redirect_uri={{site_url | url_encode}}">Connect</a>
-            </div>
-        {% else %}
-            <div class="priorNotify__header-auth">
-                <a class="btn-white" href='{{site_url}}&logout=true'>Disconnect</a>
+                <a class="btn-white" href='javascript:void(0)' onclick="disconnect()">Disconnect</a>
                 <a class="btn-green" href="javascript:void(0)">Connected</a>
             </div>
-        {% endif %}
+        <?php } else { ?>
+            <div class="priorNotify__header-auth">
+                <a class="btn-blue" target="_blank" href="<?php echo $this->getFrontUrl(); ?>/register?redirect_uri=<?php echo $this->getBaseUrl(); ?>">Sign up</a>
+                <a class="btn-blue" target="_blank" onclick="connect()" href="javascript:void(0)">Connect</a>
+            </div>
+        <?php } ?>
         </div>
     </div>
     <div class="instruction">
@@ -82,10 +83,3 @@
         <p>That's it! You should then be connected with your PriorNotify account.</p>
     </div>
 </div>
-<script>
-    var FORMS = {{ forms|json_encode|raw }};
-    var wooCommerceForm = FORMS.find(function (form) {
-        return form.name === 'WooCommerce';
-    });
-</script>
-

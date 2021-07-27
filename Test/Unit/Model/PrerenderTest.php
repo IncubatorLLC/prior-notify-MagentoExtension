@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace PriorNotify\UpwardConnector\Test\Unit\Model;
+namespace IncubatorLLC\PriorNotify\Test\Unit\Model;
 
 use Magento\Framework\App\RequestInterface;
 use Laminas\Http\ClientFactory;
@@ -13,7 +13,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\Escaper;
 use Psr\Log\LoggerInterface;
-use \PriorNotify\UpwardConnector\Model\Prerender;
+use \IncubatorLLC\PriorNotify\Model\Prerender;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Laminas\Http\Client;

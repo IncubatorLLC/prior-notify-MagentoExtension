@@ -6,4 +6,4 @@
 
 use \Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'PriorNotify_UpwardConnector', __DIR__);
+ComponentRegistrar::register(ComponentRegistrar::MODULE, 'IncubatorLLC_PriorNotify', __DIR__);

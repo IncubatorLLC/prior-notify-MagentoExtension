@@ -5,14 +5,14 @@
  */
 declare(strict_types=1);
 
-namespace PriorNotify\UpwardConnector\Controller;
+namespace IncubatorLLC\PriorNotify\Controller;
 
 use Magento\Framework\App\FrontControllerInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\HTTP\PhpEnvironment\Response;
 use Laminas\Http\Response\Stream;
-use PriorNotify\UpwardConnector\Model\Prerender;
+use IncubatorLLC\PriorNotify\Model\Prerender;
 
 class Upward implements FrontControllerInterface
 {

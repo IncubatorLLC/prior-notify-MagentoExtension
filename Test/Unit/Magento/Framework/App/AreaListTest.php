@@ -5,11 +5,11 @@
  */
 declare(strict_types=1);
 
-namespace PriorNotify\UpwardConnector\Test\Unit\Magento\Framework\App;
+namespace IncubatorLLC\PriorNotify\Test\Unit\Magento\Framework\App;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use PHPUnit\Framework\MockObject\MockObject;
-use PriorNotify\UpwardConnector\Plugin\Magento\Framework\App\AreaList as AreaListPlugin;
+use IncubatorLLC\PriorNotify\Plugin\Magento\Framework\App\AreaList as AreaListPlugin;
 
 class AreaListTest extends \PHPUnit\Framework\TestCase
 {

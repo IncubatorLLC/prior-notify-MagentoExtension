@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="PriorNotify_UpwardConnector::system_prior_notify" title="PriorNotify" translate="title" module="PriorNotify_UpwardConnector" sortOrder="40" parent="Magento_Backend::stores_settings" action="exampleadminnewpage/UpwardConnector/index" resource="PriorNotify_UpwardConnector::order_statuses22"/>
+        <add id="IncubatorLLC_PriorNotify::system_prior_notify" title="PriorNotify" translate="title" module="IncubatorLLC_PriorNotify" sortOrder="40" parent="Magento_Backend::stores_settings" action="exampleadminnewpage/UpwardConnector/index" resource="IncubatorLLC_PriorNotify::order_statuses"/>
     </menu>
 </config>

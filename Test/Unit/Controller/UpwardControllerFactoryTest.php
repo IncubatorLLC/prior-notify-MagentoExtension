@@ -5,14 +5,14 @@
  */
 declare(strict_types=1);
 
-namespace PriorNotify\UpwardConnector\Test\Unit\Controller;
+namespace IncubatorLLC\PriorNotify\Test\Unit\Controller;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\ObjectManagerInterface;
 use Magento\Upward\Controller as UpwardController;
 use PHPUnit\Framework\MockObject\MockObject;
-use PriorNotify\UpwardConnector\Controller\UpwardControllerFactory;
+use IncubatorLLC\PriorNotify\Controller\UpwardControllerFactory;
 
 class UpwardControllerFactoryTest extends \PHPUnit\Framework\TestCase
 {
