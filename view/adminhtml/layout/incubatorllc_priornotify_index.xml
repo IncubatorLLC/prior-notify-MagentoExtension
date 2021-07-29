@@ -7,7 +7,7 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="IncubatorLLC\PriorNotify\Block\Template" template="IncubatorLLC_PriorNotify::upwardconnector.phtml" >
+            <block class="IncubatorLLC\PriorNotify\Block\Template" template="IncubatorLLC_PriorNotify::priornotify.phtml" >
                 <argument name="store_name" xsi:type="string">ExampleCorp</argument>.
             </block>
         </referenceContainer>

@@ -28,7 +28,14 @@ body  {
 }
 .btn-green:hover  {
     color:  #ffffff;
+    background-color:  #2B9A2D;
+    text-decoration: none;
     opacity:  .6;
+}
+.btn-green:active  {
+    color:  #ffffff;
+    background-color:  #2B9A2D;
+    text-decoration: none;
 }
 .btn-white  {
     color:  #000000;
@@ -48,8 +55,14 @@ body  {
     margin:  5px;
 }
 .btn-white:hover  {
-    color:  rgba(0,  0,  0,  0.1);
+    color:  rgba(0,  0,  0,  0.6);
+    background-color:  #F5F5F5;
+    text-decoration: none;
     opacity:  .6;
+}
+.btn-white:active  {
+    background-color:  #F5F5F5;
+    text-decoration: none;
 }
 .btn-blue  {
     color:  #ffffff;
@@ -70,7 +83,14 @@ body  {
 }
 .btn-blue:hover  {
     color:  #ffffff;
+    text-decoration: none;
+    background-color:  #03A3E7;
     opacity:  .6;
+}
+.btn-blue:active  {
+    color:  #ffffff;
+    text-decoration: none;
+    background-color:  #03A3E7;
 }
 .error-message  {
     display:  block;

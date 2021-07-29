@@ -1,5 +1,5 @@
 <?php
-namespace IncubatorLLC\PriorNotify\Controller\Adminhtml\UpwardConnector;
+namespace IncubatorLLC\PriorNotify\Controller\Adminhtml\PriorNotify;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -35,7 +35,7 @@ class Index extends Action implements HttpGetActionInterface
     }
 
     /**
-     * Load the page defined in view/adminhtml/layout/exampleadminnewpage_upwardconnector_index.xml
+     * Load the page defined in view/adminhtml/layout/incubatorllc_priornotify_index.xml
      *
      * @return Page
      */

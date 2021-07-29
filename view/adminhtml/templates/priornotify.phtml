@@ -50,13 +50,13 @@
         <div>
         <?php if ($this->getStatus()) { ?>
             <div class="priorNotify__header-auth">
-                <a class="btn-white" href='javascript:void(0)' onclick="disconnect()">Disconnect</a>
-                <a class="btn-green" href="javascript:void(0)">Connected</a>
+                <button class="btn-white" onclick="disconnect()">Disconnect</button>
+                <button class="btn-green">Connected</button>
             </div>
         <?php } else { ?>
             <div class="priorNotify__header-auth">
                 <a class="btn-blue" target="_blank" href="<?php echo $this->getFrontUrl(); ?>/register?redirect_uri=<?php echo $this->getBaseUrl(); ?>">Sign up</a>
-                <a class="btn-blue" target="_blank" onclick="connect()" href="javascript:void(0)">Connect</a>
+                <button class="btn-blue" onclick="connect()">Connect</button>
             </div>
         <?php } ?>
         </div>
@@ -77,8 +77,6 @@
         <p>If you have a PriorNotify account, please press the CONNECT button.</p>
         
         <p>A new browser tab will open to the 'Log In' page for the PriorNotify app. You should enter your PriorNotify username and password in this page.</p>
-        
-        <p>Then, WooCommerce will ask for your authorization and approval to connect with your PriorNotify account. You should approve this request.</p>
         
         <p>That's it! You should then be connected with your PriorNotify account.</p>
     </div>
