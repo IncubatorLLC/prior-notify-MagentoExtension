@@ -24,4 +24,7 @@
     <event name="sales_order_save_after">
         <observer name="mp_wh_order" instance="IncubatorLLC\PriorNotify\Observer\AfterOrder"/>
     </event>
+    <event name="order_cancel_after">
+        <observer name="order_cancel" instance="IncubatorLLC\PriorNotify\Observer\CancelOrder" />
+    </event>
 </config>

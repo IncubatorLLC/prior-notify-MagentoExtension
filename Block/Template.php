@@ -184,7 +184,9 @@ class Template extends \Magento\Framework\View\Element\Template
                 return false;
             }
 
-            $url = "https://dev-api.priornotify.com/users/me/magento-connection";
+            $apiUrl = $this->getApiUrl();
+
+            $url = $apiUrl . "/users/me/magento-connection";
 
             $this->curl->addHeader("x-magento-plugin-token", "Token ".$token);
             $this->curl->get($url);
