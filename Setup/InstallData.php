@@ -40,8 +40,8 @@
         */
         public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
         {
-            $this->configWriter->save(self::API_URL, "https://dev-api.priornotify.com");
-            $this->configWriter->save(self::FRONT_URL, "https://dev-login.priornotify.com");
+            $this->configWriter->save(self::API_URL, "https://api.priornotify.com");
+            $this->configWriter->save(self::FRONT_URL, "https://login.priornotify.com");
 
             $this->integrationManager->processIntegrationConfig(['PriorNotify Integration']);
         }

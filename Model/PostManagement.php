@@ -4,7 +4,11 @@ namespace IncubatorLLC\PriorNotify\Model;
 use Magento\Framework\App\ResourceConnection;
 use IncubatorLLC\PriorNotify\Api\PostManagementInterface;
 use Magento\Framework\HTTP\Client\Curl;
+use Magento\Framework\App\ObjectManager;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+
 class PostManagement implements PostManagementInterface {
+	const API_URL = 'prior_notify/plugin_config/api_url';
 
 	const PRIOR_NOTIFY_TABLE = 'prior_notify';
     const KEY_FIELD = 'key';
@@ -61,7 +65,11 @@ class PostManagement implements PostManagementInterface {
 				];
 				$connection->delete(self::PRIOR_NOTIFY_TABLE, $whereConditions);
 				
-				$url = 'https://dev-api.priornotify.com/integrations/magento/logout';
+				$scopeConfig = ObjectManager::getInstance()->get(ScopeConfigInterface::class);
+				
+				$apiUrl = $scopeConfig->getValue(self::API_URL);
+				
+				$url = $apiUrl . "/integrations/magento/logout";
 				
 				$this->curl->addHeader("x-magento-plugin-token", "Token ".$token);
 				$this->curl->post($url, []);

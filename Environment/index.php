@@ -9,6 +9,6 @@ namespace IncubatorLLC\PriorNotify\Environment;
 
 class Environment
 {
-    const BASE_URL = 'https://dev-login.priornotify.com/';
-    const SITE_URL = 'https://dev-login.priornotify.com/';
+    const BASE_URL = 'https://login.priornotify.com/';
+    const SITE_URL = 'https://login.priornotify.com/';
 }

@@ -29,19 +29,14 @@ use Magento\Framework\App\ResourceConnection;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-
 /**
- * Class AfterOrder
+ * Class CancelOrder
  * @package IncubatorLLC\PriorNotify\Observer
  */
-class AfterOrder implements ObserverInterface
+class CancelOrder implements ObserverInterface
 {
     const API_URL = 'prior_notify/plugin_config/api_url';
 
-    const SALES_ORDER = 'sales_order';
-    const CUSTOMER_ENTITY = 'customer_entity';
-    const QUOTE_ADDRESS = 'quote_address';
-    const QUOTE_ITEM = 'quote_item';
     const PRIOR_NOTIFY = 'prior_notify';
 
     /**
@@ -85,11 +80,6 @@ class AfterOrder implements ObserverInterface
     {
         $order = $observer->getEvent()->getOrder();
         $orderId = $order->getEntityId();
-        $order_status = $order->getStatus();
-        if ($order_status != 'pending') {
-            $this->logger->debug('AfterOrder order status not pending');
-            return false;
-        }
 
         $connection = $this->resourceConnection->getConnection();
 
@@ -98,28 +88,9 @@ class AfterOrder implements ObserverInterface
         $token =$this->resourceConnection->getConnection()->fetchOne($query);
 
         if (!$token) {
-            $this->logger->debug('AfterOrder token is not valid');
+            $this->logger->debug('CancelOrder token is not valid');
             return false;
         }
-
-		$orderTableName = $connection->getTableName(self::SALES_ORDER);
-        $selectOrder = $connection->select()->from($orderTableName)->where('entity_id = ?', $orderId);
-        $resultOrder = $connection->fetchRow($selectOrder);
-
-		$customerTableName = $connection->getTableName(self::CUSTOMER_ENTITY);
-        $selectCustomer = $connection->select()->from($customerTableName)->where('entity_id = ?', $resultOrder['customer_id']);
-        $resultCustomer = $connection->fetchRow($selectCustomer);
-
-        $quoteTableName = $connection->getTableName(self::QUOTE_ADDRESS);
-        $selectBillingAddress = $connection->select()->from($quoteTableName)->where('quote_id = ? AND address_type = "billing"', $resultOrder['quote_id']);
-        $resultBillingAddress = $connection->fetchRow($selectBillingAddress);
-
-        $selectShippingAddress = $connection->select()->from($quoteTableName)->where('quote_id = ? AND address_type = "shipping"', $resultOrder['quote_id']);
-        $resultShippingAddress = $connection->fetchRow($selectShippingAddress);
-
-        $quoteItemTableName = $connection->getTableName(self::QUOTE_ITEM);
-        $selectQuoteItemAddress = $connection->select()->from($quoteItemTableName)->where('quote_id = ?', $resultOrder['quote_id']);
-        $resultQuoteItemAddress = $connection->fetchAll($selectQuoteItemAddress);
 
         $storeManager = ObjectManager::getInstance()->get(StoreManagerInterface::class);
         $baseUrl = $storeManager->getStore()->getBaseUrl();
@@ -128,14 +99,10 @@ class AfterOrder implements ObserverInterface
 
         $apiUrl = $scopeConfig->getValue(self::API_URL);
         
-        $url = $apiUrl . "/webhooks/magento_order_paid";
+        $url = $apiUrl . "/webhooks/magento_order_canceled";
 
         $body = array(
-            'order' => $resultOrder,
-            'customer' => $resultCustomer,
-            'billing_address' => $resultBillingAddress,
-            'shipping_address' => $resultShippingAddress,
-            'products' => $resultQuoteItemAddress,
+            'order_id' => $orderId,
             'base_url' => $baseUrl,
         );
 
@@ -145,7 +112,7 @@ class AfterOrder implements ObserverInterface
         $result = $this->curl->getBody();
 
         if (isset($response['success'])) {
-            $this->logger->debug('AfterOrder success');
+            $this->logger->debug('CancelOrder success');
         }
     }
 
@@ -160,6 +127,6 @@ class AfterOrder implements ObserverInterface
 
         $body = $this->generateLiquidTemplate($item);
 
-        $this->logger->debug('AfterOrder updateObserver', $body);
+        $this->logger->debug('CancelOrder updateObserver', $body);
     }
 }

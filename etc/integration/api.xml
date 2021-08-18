@@ -37,6 +37,13 @@
             <resource name="Magento_Customer::delete" />
             <resource name="Magento_Customer::reset_password" />
             <resource name="Magento_Customer::invalidate_tokens" />
+            <resource name="Magento_Catalog::catalog" />
+            <resource name="Magento_Catalog::catalog_inventory" />
+            <resource name="Magento_Catalog::products" />
+            <resource name="Magento_Catalog::update_attributes" />
+            <resource name="Magento_Catalog::edit_product_design" />
+            <resource name="Magento_Catalog::categories" />
+            <resource name="Magento_Catalog::edit_category_design" />
             <resource name="Magento_LoginAsCustomer::allow_shopping_assistance" />
             <resource name="Magento_Customer::online" />
             <resource name="Magento_Customer::group" />
