@@ -49,7 +49,6 @@
             <resource name="Magento_Customer::group" />
             <resource name="Magento_LoginAsCustomer::login" />
             <resource name="Magento_LoginAsCustomerLog::login_log" />
-            <resource name="Magento_Backend::stores" />
             <resource name="Magento_InventoryApi::inventory" />
             <resource name="Magento_InventoryApi::source" />
             <resource name="Magento_InventoryApi::source_edit" />
@@ -60,6 +59,12 @@
             <resource name="Magento_InventoryInStorePickupApi::inStorePickup" />
             <resource name="Magento_InventoryInStorePickupApi::notify_orders_are_ready_for_pickup" />
             <resource name="Magento_InventorySalesApi::stock" />
+            <resource name="Magento_Backend::stores" />
+            <resource name="Magento_Backend::stores_attributes" />
+            <resource name="Magento_Catalog::attributes_attributes" />
+            <resource name="Magento_Catalog::sets" />
+            <resource name="Magento_Review::ratings" />
+            <resource name="Magento_Swatches::iframe" />
         </resources>
     </integration>
 </integrations>
